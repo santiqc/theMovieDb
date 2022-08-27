@@ -1,2 +1,21 @@
 <app-navbar></app-navbar>
-<p>detail-movie works!</p>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Cargando Detalles...</p>
+</ngx-spinner>
+
+<div class="card mb-3" *ngIf="detailMovie; index as i">
+  <div class="row g-0 animated bounce" >
+    <div class="col-md-4">
+      <img src="{{ url + detailMovie.poster_path }}" alt="..." />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ detailMovie.original_name }}</h5>
+        <p class="card-text">{{ detailMovie.overview }}</p>
+        <a (click)="goBack()" class="btn btn-primary">return</a>
+      </div>
+      <div class="card-footer text-center">&copy; {{ detailMovie.type }}</div>
+    </div>
+  </div>
+</div>
