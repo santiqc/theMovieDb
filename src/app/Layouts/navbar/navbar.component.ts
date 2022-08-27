@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { debounceTime } from 'rxjs';
 
 @Component({
@@ -11,7 +12,8 @@ import { debounceTime } from 'rxjs';
 export class NavbarComponent implements OnInit {
 
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.search.valueChanges
@@ -25,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
     if(value && value.length > 3) {
       this.router.navigate(['/search-movie'],{queryParams: {query: value}});
+      this.spinner.hide();
     }
   }
 

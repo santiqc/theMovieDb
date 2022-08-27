@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
-import { filter, map, take} from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { take} from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Searchmovie } from '../movie';
 import { MovieService } from '../service/movie.service';
@@ -17,7 +19,9 @@ export class SearchMovieComponent implements OnInit {
   constructor(
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +34,12 @@ export class SearchMovieComponent implements OnInit {
     console.log(value);
     this.movieService.searchMovie(value).subscribe(data => {
            this.movies = data;
+        },(err) => {
+          this.spinner.hide();
+          this.toastr.error(err.error.mensaje, 'Fail', {
+            timeOut: 3000,  positionClass: 'toast-top-center',
+          });
+          //console.log(err);
         })
   }
 
@@ -46,7 +56,14 @@ export class SearchMovieComponent implements OnInit {
    private getSearchMovie():void{
      this.movieService.searchMovie(this.query).subscribe(data => {
        this.movies = data;
-     })
+     }
+     ,(err) => {
+      this.spinner.hide();
+      this.toastr.error(err.error.mensaje, 'Fail', {
+        timeOut: 3000,  positionClass: 'toast-top-center',
+      });
+      //console.log(err);
+    })
    }
 
 }

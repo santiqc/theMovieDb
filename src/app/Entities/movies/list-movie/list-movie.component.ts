@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment.prod';
 import { Movie } from '../movie';
 import { MovieService } from '../service/movie.service';
@@ -14,7 +15,8 @@ export class ListMovieComponent implements OnInit {
   movies: Movie[];
   constructor(
     private movieService: MovieService,
-    private modalService: NgbModal
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
 
   ) { }
 
@@ -25,7 +27,13 @@ export class ListMovieComponent implements OnInit {
   veePupulars() {
     this.movieService.getPopulars().subscribe(data => {
       this.movies = data;
-    });
+    },(err) => {
+      this.spinner.hide();
+      this.toastr.error(err.error.mensaje, 'Fail', {
+        timeOut: 3000,  positionClass: 'toast-top-center',
+      });
+      //console.log(err);
+    })
   }
 
 
