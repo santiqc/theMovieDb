@@ -1,18 +1,11 @@
 <nav class="navbar navbar-dark bg-dark" style="margin-bottom: 10px;">
     <div class="container">
       <a class="navbar-brand" routerLink="/">The Movies</a>
-      <form class="d-flex" role="search">
-        <input
-        #inputSearch
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          
-          
-        />
-        <button (click)="onSearch(inputSearch.value)" class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <div >
+    <mat-form-field class="form-control" role="search">
+        <input   matInput placeholder="search any movie" [formControl]="search">
+      </mat-form-field> 
+    </div>
     </div>
   </nav>
   
