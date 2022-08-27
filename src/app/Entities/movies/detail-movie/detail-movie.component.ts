@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment.prod';
 import { DetailMovie, detailSearchmovie } from '../detail-movie';
 import { Movie, Searchmovie } from '../movie';
@@ -23,14 +24,13 @@ export class DetailMovieComponent implements OnInit {
     private movieService: MovieService,
     private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.spinner.show();
-
     this.detailMoviePopular();
-
     this.detailMovieSearch();
   }
   //get detail movie popular
@@ -43,6 +43,10 @@ export class DetailMovieComponent implements OnInit {
       },
       (err) => {
         this.spinner.hide();
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
+        //this.router.navigate(['/']);
         //console.log(err);
       }
     );
@@ -57,7 +61,11 @@ export class DetailMovieComponent implements OnInit {
       },
       (err) => {
         this.spinner.hide();
-        //console.log(err);
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
+        
+
       }
     );
   }
