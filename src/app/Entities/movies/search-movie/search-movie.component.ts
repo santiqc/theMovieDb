@@ -18,15 +18,22 @@ export class SearchMovieComponent implements OnInit {
     private route: Router,
     private activatedRoute: ActivatedRoute,
     private movieService: MovieService
-  ) { 
-    this.onSearchChanged();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getMovieByQuery();
     this.getSearchMovie();
+    
+  }
+  //get movie in search
+  handleSearch(value: string){
+    console.log(value);
+    this.movieService.searchMovie(value).subscribe(data => {
+           this.movies = data;
+        })
   }
 
+//get name the movie in home
   private getMovieByQuery():void{
     this.activatedRoute.queryParams.pipe(take(1)).subscribe((params: ParamMap) => {
       console.log(params);
@@ -35,20 +42,11 @@ export class SearchMovieComponent implements OnInit {
     })
   }
 
-  private onSearchChanged(): void{
-    this.route.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe(()=>{
-      this.movies =[];
-      this.getSearchMovie();
-    });
-  }
-
-
-  private getSearchMovie():void{
-    this.movieService.searchMovie(this.query).subscribe(data => {
-      this.movies = data;
-    })
-  }
+//get name the search movie
+   private getSearchMovie():void{
+     this.movieService.searchMovie(this.query).subscribe(data => {
+       this.movies = data;
+     })
+   }
 
 }

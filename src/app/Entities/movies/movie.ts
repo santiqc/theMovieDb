@@ -1,3 +1,4 @@
+//search movie popular
 export class Movie {
     page:          number;
     results:       Result[];
@@ -21,7 +22,7 @@ export class Movie {
     vote_count:        number;
   }
 
-  // detail search movie 
+ //search movie global
   export interface Searchmovie {
     page:          number;
     results:       Resultdetail[];

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +10,15 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.search.valueChanges
+    .pipe(
+      debounceTime(300)
+    )
+    .subscribe(value => this.searchEvent.emit(value));
   }
 
   onSearch(value: string) {
@@ -20,4 +28,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  search= new FormControl('');
+  @Output('search') searchEvent = new EventEmitter<string>();
 }

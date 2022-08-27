@@ -1,4 +1,4 @@
-// detail movie pupular
+// detail movie populars
 export class DetailMovie {
   adult: boolean;
   backdrop_path: string;
@@ -22,7 +22,7 @@ export class DetailMovie {
 }
 
 
-// detail the movie 
+// detail movie global
 
 export interface detailSearchmovie {
   adult:                 boolean;

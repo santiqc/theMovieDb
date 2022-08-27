@@ -10,6 +10,8 @@ import { ListMovieComponent } from './Entities/movies/list-movie/list-movie.comp
 import { DetailMovieComponent } from './Entities/movies/detail-movie/detail-movie.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
 import {
@@ -44,7 +46,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     NgxSpinnerModule,
     SwiperModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   entryComponents: [DetailMovieComponent],
   providers: [
