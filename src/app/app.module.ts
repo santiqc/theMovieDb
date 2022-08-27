@@ -16,6 +16,7 @@ import {
   SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG
 } from 'ngx-swiper-wrapper';
+import { SearchMovieComponent } from './Entities/movies/search-movie/search-movie.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -32,7 +33,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ListMovieComponent,
     DetailMovieComponent,
     ListMovieComponent,
-    HomeComponent
+    HomeComponent,
+    SearchMovieComponent
   ],
   imports: [
     BrowserModule,

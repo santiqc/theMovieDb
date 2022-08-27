@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div class="row text-center">
+    <div class="col-md-4" *ngFor="let popular of movies; index as i">
+      <div class="card mb-3 animated bounce">
+        <h3 class="card-header">{{ popular.title }}</h3>
+  
+        <div class="card-body text-center">
+          <a routerLink="/detail/{{ popular.id }}"
+            ><img
+              style="height: 500px; width: 100%; display: block"
+              src="{{ url + popular.poster_path }}"
+              alt="Card image"
+            />
+          </a>
+        </div>
+  
+        <div class="card-footer text-center">&copy; marca personal</div>
+      </div>
+    </div>
+  </div>
+  
