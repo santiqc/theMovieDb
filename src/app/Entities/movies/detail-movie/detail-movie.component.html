@@ -1,2 +1,32 @@
 <app-navbar></app-navbar>
-<p>detail-movie works!</p>
+
+<div class="row" *ngIf="detailMovie">
+    <div class="col-md-4" >
+        <p>{{detailMovie.original_name}}</p> 
+        <p>{{detailMovie.overview}}</p>
+        <a routerLink="/"><img  style="height: 500px; width: 100%; display: block;" src={{url+detailMovie.poster_path}} alt="Card image"></a>
+        <!-- <div class="card mb-3 animated bounce">
+            <h3 class="card-header">{{popular.name}}
+                ID: {{popular.id}}</h3>
+           
+
+            <div class="card-body">
+              <h5 class="card-title">parrafo: {{popular.overview}}</h5>
+            </div>
+            <div class="card-body text-center">
+           <a routerLink="/"><img  style="height: 500px; width: 100%; display: block;" src={{url+detailMovie.poster_path}} alt="Card image">
+           </a>     
+        </div>
+           
+            <!-- <div class="card-body d-flex justify-content-between">
+                
+              <button class="btn btn-outline-primary" ><i class="far fa-eye"></i> See</button>
+              <button class="btn btn-outline-danger" ><i class="far fa-trash-alt"></i> Delete</button>
+            </div>
+            <div class="card-footer text-center">
+              &copy; marca personal
+            </div>
+          </div> -->
+        
+    </div>
+</div>
