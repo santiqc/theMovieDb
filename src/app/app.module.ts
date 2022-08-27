@@ -9,7 +9,22 @@ import { NavbarComponent } from './Layouts/navbar/navbar.component';
 import { ListMovieComponent } from './Entities/movies/list-movie/list-movie.component';
 import { DetailMovieComponent } from './Entities/movies/detail-movie/detail-movie.component';
 import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
+import {
+  SwiperModule, SwiperConfigInterface,
+  SWIPER_CONFIG
+} from 'ngx-swiper-wrapper';
 
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  observer: true,
+  direction: 'horizontal',
+  threshold: 50,
+  spaceBetween: 5,
+  slidesPerView: 1,
+  centeredSlides: true
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +39,18 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
+    SwiperModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  entryComponents: [DetailMovieComponent],
+  providers: [
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
