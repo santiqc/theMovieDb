@@ -21,7 +21,7 @@ export class ListMovieComponent implements OnInit {
   ngOnInit(): void {
     this.veePupulars();
   }
-
+//get list movie popular
   veePupulars() {
     this.movieService.getPopulars().subscribe(data => {
       this.movies = data;
