@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment.prod';
-import { DetailMovie } from '../detail-movie';
-import { Movie } from '../movie';
+import { DetailMovie, detailSearchmovie } from '../detail-movie';
+import { Movie, Searchmovie } from '../movie';
 import { MovieService } from '../service/movie.service';
 
 @Component({
@@ -15,6 +15,10 @@ export class DetailMovieComponent implements OnInit {
   url= environment.seeImg;
   movie: Movie[];
   detailMovie: DetailMovie;
+  searchMovie: detailSearchmovie;
+
+  private id = this.activatedRoute.snapshot.params['id'];
+
   constructor(
     private movieService: MovieService,
     private activatedRoute: ActivatedRoute,
@@ -24,19 +28,33 @@ export class DetailMovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.movieService.getDetailMovie(id).subscribe(data => {
+    
+    this.movieService.getDetailMovie(this.id).subscribe(data => {
       this.spinner.hide();
         this.detailMovie = data;
-        console.log(this.detailMovie);
+        //console.log(this.detailMovie);
       },
       err => {
         this.spinner.hide();
-        console.log(err);
+        //console.log(err);
+      }
+    );
+
+    this.detailMovieSearch();
+  } 
+
+  detailMovieSearch(): void{
+    this.movieService.getDetailSearchMovie(this.id).subscribe(data => {
+      this.spinner.hide();
+        this.searchMovie = data;
+        //console.log(this.searchMovie);
+      },
+      err => {
+        this.spinner.hide();
+        //console.log(err);
       }
     );
   }
-
   goBack(): void {
     this.router.navigate(['/']);}
 }

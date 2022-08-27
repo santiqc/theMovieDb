@@ -19,3 +19,20 @@
     </div>
   </div>
 </div>
+
+<div class="card mb-3" *ngIf="searchMovie; index as i">
+  <div class="row g-0 animated bounce" >
+    <div class="col-md-4">
+      <img src="{{ url + searchMovie.poster_path }}" alt="..." />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ searchMovie.original_title }}</h5>
+        <p class="card-text">{{ searchMovie.overview }}</p>
+        <a (click)="goBack()" class="btn btn-primary">return</a>
+      </div>
+      <div class="card-footer text-center">&copy; {{ searchMovie.status }}</div>
+    </div>
+  </div>
+</div>
+
