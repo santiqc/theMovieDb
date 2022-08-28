@@ -61,7 +61,7 @@ export class DetailMovieComponent implements OnInit {
       },
       (err) => {
         this.spinner.hide();
-        this.toastr.error(err.error.mensaje, 'Fail', {
+        this.toastr.error(err, 'Fail', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         

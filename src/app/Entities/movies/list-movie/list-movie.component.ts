@@ -29,7 +29,7 @@ export class ListMovieComponent implements OnInit {
       this.movies = data;
     },(err) => {
       this.spinner.hide();
-      this.toastr.error(err.error.mensaje, 'Fail', {
+      this.toastr.error(err, 'Fail', {
         timeOut: 3000,  positionClass: 'toast-top-center',
       });
       //console.log(err);
